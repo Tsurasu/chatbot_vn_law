@@ -1,0 +1,22 @@
+[Unit]
+Description=Uvicorn FastAPI Server
+After=network.target
+
+[Service]
+User=pndtuan
+Group=pndtuan
+
+# Thư mục chứa project
+WorkingDirectory=/home/pndtuan/chatbot_law
+
+# Python bên trong venv nằm ngoài project
+ExecStart=/home/pndtuan/venv/bin/python -m uvicorn api.main:app --host 0.0.0.0 --port 8002
+
+Restart=always
+RestartSec=3
+
+# PATH cho venv
+Environment="PATH=/home/pndtuan/venv/bin"
+
+[Install]
+WantedBy=multi-user.target
